@@ -1,0 +1,24 @@
+services:
+  postgresql:
+    container_name: postgresql_catalogo
+    image: postgres:15.4-bullseye
+    restart: always
+
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: db_ms_catalogo
+      POSTGRES_USER: dana
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5435:5432"
+
+    volumes:
+      - ./_data:/var/lib/postgresql/data
+      - postgres_data_catalogo:/var/lib/postgresql/data
+
+networks:
+  mired:
+    driver: bridge
+
+volumes:
+  postgres_data_catalogo:
